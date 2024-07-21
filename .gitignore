@@ -1,0 +1,4 @@
+*.DS_Store
+
+# HRTF Matrix files
+*.jxf

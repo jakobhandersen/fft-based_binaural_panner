@@ -1,0 +1,5 @@
+The HRTF jitter matrix files are quite large, and they are therefore not a part of the Git repository. They could be added via Git LFS (Git Large File Storage) but on GitHub we quite quickly hit the storage and transfer limits for free usage - and the paid plans for LFS are, currently, quite pricey.
+
+Therefore, the HRTF jitter matrix files are shared on Dropbox and they can be downloaded from this link: https://www.dropbox.com/scl/fo/sbn8w129k0zt9s010qv60/ANMi3AtwGF0VjgmCuQASKFc?rlkey=c5ym5pncy30j49a9shse8fanf&st=3nd32lid&dl=0 
+
+To use the files within your local repository just download, unzip, and put the files in this folder. The files will be ignored by Git as specified in the .gitignore file in the repository root.
