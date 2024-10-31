@@ -1,0 +1,8 @@
+The HRTF jitter matrix files are quite large (around 154 MB per file and around 6.6 GB in total), and they are therefore not a part of the Git repository. They could be added via Git LFS (Git Large File Storage) but on GitHub we quite quickly hit the storage and transfer limits for free usage - and the paid plans for LFS are, currently, quite pricey.
+
+If the panner has been downloaded from a GitHub release (will probably generally be the case) then the Subject HRTF matrix files can be found distributed in 4 zip files next to the source code file(s). Just download, unzip, and place the .jit files in this folder.
+
+
+If, instead of having downloaded a release, you are checking out the git repository and want to add the Subject HRTF matrix files, then these can either just be grabbed from the latest release or otherwise or via this dropbox link:
+https://www.dropbox.com/scl/fo/pae1cpurp6trt3fsw4p5j/APu8oN8uKC87ksYZlVk_gqc?rlkey=c24qu9p5jsrpm5bre0bdchpwu&st=36gnyhb2&dl=0
+The files will be ignored by Git as specified in the .gitignore file in the repository root.

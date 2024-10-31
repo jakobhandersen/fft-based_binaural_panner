@@ -1,0 +1,24 @@
+{
+  "author": "Jakob Hougaard Andersen",
+  "description": "Pan audio signals binaurally to a spherical direction specified by interaural-polar coordinates – azimuth and elevation. Performs convolution in the frequency domain based on HRTF inpulse responses from The CIPIC HRTF Database. This version of the panner also includes an mc version (mc.binpan~) that can pan multi-channel signals. The CIPIC HRTF database project page is no longer accessible but GitHub user amini-allight has uploaded the project resources to this repository: https://github.com/amini-allight/cipic-hrtf-database.",
+  "homepatcher": "FFT-based binaural panner.maxpat",
+  "max_version_min": "8.0",
+  "max_version_max": "none",
+  "name": "FFT-based Binaural Panner",
+  "os": {
+    "macintosh": {
+      "platform": ["ia32", "x64"],
+      "min_version": "none"
+    },
+    "windows": {
+      "platform": ["ia32", "x64"],
+      "min_version": "none"
+    }
+  },
+  "package_extra": {
+    "reverse_domain": "com.github"
+  },
+  "tags": ["binaural", "fft", "panner"],
+  "version": "4.1",
+  "website": "https://github.com/jakobhandersen/fft-based_binaural_panner"
+}

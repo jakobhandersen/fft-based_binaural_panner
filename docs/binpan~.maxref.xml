@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object name="binpan~">
+	<digest>
+		FFT-based Binaural Panner
+	</digest>
+	<description>
+		Takes an input signal and pans it binaurally to a spherical direction specified by azimuth and elevation. Performs convolution in the frequency domain based on HRTF inpulse responses from the CIPIC HRTF database.
+		The database web page is no longer online but GitHub user amini-allight has uploaded the project resources to this repository: https://github.com/amini-allight/cipic-hrtf-database.
+	</description>
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Jakob Hougaard Andersen</metadata>
+		<metadata name="tag">FFT-based binaural panner</metadata>
+		<metadata name="tag">Audio</metadata>
+		<metadata name="tag">Binaural</metadata>
+		<metadata name="tag">FFT</metadata>
+		<metadata name="tag">HRTF</metadata>
+		<metadata name="tag">CIPIC</metadata>
+	</metadatalist>
+	<!--INLETS-->
+	<inletlist>
+		<inlet id="0" type="signal">
+			<digest>Audio signal: signal to be panned.</digest>
+			<description>Audio signal: signal to be panned.</description>
+		</inlet>
+		<inlet id="1" type="float">
+			<digest>Azimuth (left to right on a semi-circle) panning position between 0.0 to 1.0.</digest>
+			<description>0 equals straight left and 1 equals straight right. Value will be folded internally to the 0-1 range.</description>
+		</inlet>
+		<inlet id="2" type="float">
+			<digest>Elevation (down->front->up->back->down on a full circle) panning position between 0.0 to 2.0.</digest>
+			<description>Determines the elevation angle of the "azimuth" semi-circle, where 0 (and 2) equals straight downward rotation, 0.5 equals straight forward, 1 equals straight upwards and 1.5 equals straight backwards. Note that with azimuth at the
+				extremes (0 or 1), changes in elevation will have no effect due to the nature of this coordinate system. Also note that value goes to 2, since it goes full circle (2 π radians). Value will be wrapped internally around the 0-2 range.</description>
+		</inlet>
+		<inlet id="3" type="list">
+			<digest>Message inlet for the 'read' message for reading HRTF matrix file and for changing the attributes by messages.</digest>
+			<description>'read' + [HRTF subject matrix file] reads the specified file into the internal jit.matrix to use for panning. For example: read subject_003.jit (.jit ending not strictly necessary). Attribute name followed by value sets attribute to that value.</description>
+		</inlet>
+	</inletlist>
+	<!--OUTLETS-->
+	<outletlist>
+		<outlet id="0" type="signal">
+			<digest>Audio signal: Left channel/ear output.</digest>
+		</outlet>
+		<outlet id="1" type="signal">
+			<digest>Audio signal: Right channel/ear output.</digest>
+		</outlet>
+	</outletlist>
+	<!--ARGUMENTS-->
+	<objarglist>
+		<objarg name="FFT_window_overlap_factor" optional="0" type="int">
+			<digest>Number of overlaps of FFT windows (required, 4 is recommended).</digest>
+			<description>Number of overlaps of FFT windows. 4 is recommended for most applications. Must be a power of 2. A higher number generally means higher quality but also requires more processing power.</description>
+		</objarg>
+	</objarglist>
+	<!--ATTRIBUTES-->
+	<attributelist>
+		<attribute name="delay_smooth" get="0" set="1" type="float" size="1">
+			<digest>Smoothing of changes in the onset delays of HRTFs</digest>
+			<description>Smoothing of changes in the onset delays. The amount of time (ms) it takes for the onset delays to reach new values. Default is 20.</description>
+		</attribute>
+		<attribute name="matrix_name" get="0" set="1" type="symbol" size="1">
+			<digest>Set a different name for the internal jit.matrix</digest>
+			<description>Sets a different name for internal jit.matrix allowing for different subject HRTF matrix files to be loaded into different panner instances. Defaults to the name 'subject_hrtf'.</description>
+		</attribute>
+	</attributelist>
+	<!--MESSAGES-->
+	<methodlist>
+		<method name="read">
+			<arglist>
+				<arg name="subject-hrtf-file" optional="1" type="symbol"/>
+			</arglist>
+			<digest>
+				In right inlet: read a subject HRTF matrix file.
+			</digest>
+			<description>
+				In right inlet: The word
+				<m>read</m>
+				followed by the name of one of the subject HRTF files reads the specified file into the internal jit.matrix to be used for the panning. If no argument is given (symbol, name of file) the open file dialog will show. The subject HRTF matrix files are
+				located within the 'media' folder of this package.
+			</description>
+		</method>
+		<method name="float">
+			<arglist/>
+			<digest>
+				In 2nd and 3rd inlet, sets azimuth and elevation respectively for the panning direction.
+			</digest>
+			<description>
+				A
+				<m>float</m>
+				(0. to 1.) in 2nd inlet will set the azimuth coordinate. A
+				<m>float</m>
+				(0. to 2.) in 3rd inlet will set the elevation coordinate.
+			</description>
+		</method>
+		<method name="signal">
+			<arglist/>
+			<digest>
+				In left inlet,
+				<m>signal</m>
+				to be panned.
+			</digest>
+			<description>
+				In left inlet:
+				<m>signal</m>
+				to be panned binaurally.
+			</description>
+		</method>
+	</methodlist>
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="mc.binpan~"/>
+	</seealsolist>
+</c74object>
