@@ -10,7 +10,7 @@ The project has been inspired by other Max projects such as Head in Space (proje
 The panner uses the impulse responses from the CIPIC HRTF database (https://www.ece.ucdavis.edu/cipic/wp-content/uploads/sites/12/2015/04/cipic_WASSAP_2001_143.pdf) but in a frequency-domain and interpolated version. The CIPIC HRTF database project page is no longer accessible but GitHub user amini-allight has uploaded the project resources to this repository: https://github.com/amini-allight/cipic-hrtf-database.
 
 ##  Download and installation
-Go to the latest release page and download and unpack the Source code (either the zip file or the tar.gz file).
+Go to the [latest release](https://github.com/jakobhandersen/fft-based_binaural_panner/releases/latest) page and download and unpack the Source code (either the zip file or the tar.gz file).
 
 Then, from the same release page, download the Subject HRTF matrix files (distributed in 4 separate zip files). Unzip and place the matrix files (with the file extension *.jit*) within the subfolder of the unzipped source code folder *./media/Subject HRTF matrix files*.  
 Due to the size of these files (around 154 MB per file and around 6.6 GB in total) they are not a part of the source files in the git repository.
